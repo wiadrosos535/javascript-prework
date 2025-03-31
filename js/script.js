@@ -21,7 +21,7 @@ if(playerInput == 1){
 } else if(playerInput == 3){
    playerMove = 'papier';	
 }
-printMessage('Twój ruch to: ' + playerMove);
+printMessage('Ruch gracza to: ' + playerMove);
 
 //computer move//
 
@@ -35,4 +35,23 @@ if(randomNumber == 1){
 } else if(randomNumber == 3){
    computerMove = 'papier';	
 }
-printMessage('Mój ruch to: ' + computerMove);
+printMessage('Ruch komputera to: ' + computerMove);
+
+if (computerMove == 'kamień' && playerMove =='papier'){
+	printMessage('Gracz wygrywa');	
+} else if(computerMove == 'nożyce' && playerMove =='kamień'){
+	printMessage('Gracz wygrywa');
+} else if(computerMove == 'papier' && playerMove =='nożyce'){
+	printMessage('Gracz wygrywa');
+} else if(computerMove == 'kamień' && playerMove =='nożyce'){
+	printMessage('Komputer wygrywa');
+} else if(computerMove == 'papier' && playerMove =='kamień'){
+	printMessage('Komputer wygrywa');
+} else if(computerMove == 'nożyce' && playerMove =='papier'){
+	printMessage('Komputer wygrywa');
+} else if(computerMove == playerMove){
+	printMessage('remis');
+} else {
+	printMessage('gracz wpisał złą liczbę')
+}
+
