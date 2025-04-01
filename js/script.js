@@ -1,66 +1,85 @@
-function printMessage(msg){
-	let div = document.createElement('div');
-	div.innerHTML = msg;
-	document.getElementById('messages').appendChild(div);
+function playGame(playerInput) {
+    clearMessages();
+
+    function clearMessages() {
+        document.getElementById('messages').innerHTML = '';
+    }
+
+    function printMessage(msg) {
+        let div = document.createElement('div');
+        div.innerHTML = msg;
+        document.getElementById('messages').appendChild(div);
+    }
+
+    function getMoveName(number) {
+        if (number == 1) {
+            return 'kamień';
+        } else if (number == 2) {
+            return 'nożyce';
+        } else if (number == 3) {
+            return 'papier';
+        } else {
+            return 'zła liczba';
+        }
+    }
+
+    function displayResult(argComputerMove, argPlayerMove) {
+        if (
+            (argComputerMove == 'kamień' && argPlayerMove == 'papier') ||
+            (argComputerMove == 'nożyce' && argPlayerMove == 'kamień') ||
+            (argComputerMove == 'papier' && argPlayerMove == 'nożyce')
+        ) {
+            return 'Gracz wygrywa';
+        } else if (
+            (argComputerMove == 'kamień' && argPlayerMove == 'nożyce') ||
+            (argComputerMove == 'papier' && argPlayerMove == 'kamień') ||
+            (argComputerMove == 'nożyce' && argPlayerMove == 'papier')
+        ) {
+            return 'Komputer wygrywa';
+        } else if (argComputerMove == argPlayerMove) {
+            return 'Remis';
+        } else {
+            return 'Gracz wpisał złą liczbę';
+        }
+    }
+
+    // Player move
+    console.log('Gracz wpisał: ' + playerInput);
+    let playerMove = getMoveName(playerInput);
+    printMessage('Ruch gracza to: ' + playerMove);
+
+    // Computer move
+    let randomNumber = Math.floor(Math.random() * 3 + 1);
+    console.log('Wylosowana liczba to: ' + randomNumber);
+    let computerMove = getMoveName(randomNumber);
+    printMessage('Ruch komputera to: ' + computerMove);
+
+    // Result
+    printMessage(displayResult(computerMove, playerMove));
 }
 
-function clearMessages(){
-	document.getElementById('messages').innerHTML = '';
+function buttonClicked(playerChoice) {
+    playGame(playerChoice);
 }
 
-function getMoveName(number){
-	if(number == 1){
-		number = 'kamień';
-		return	number;
-	  } else if(number == 2){
-		 number = 'nożyce';
-		 return	number;
-	  } else if(number == 3){
-		 number = 'papier';
-		 return	number;
-	  }	else{
-		 number = 'zła liczba';
-		 return number;
-	  }
+let playRock = document.getElementById('play-rock');
+let playPaper = document.getElementById('play-paper');
+let playScissors = document.getElementById('play-scissors');
+
+if (playRock) {
+    playRock.addEventListener('click', function () {
+        buttonClicked(1);
+    });
 }
 
-function displayResult(argComputerMove, argPlayerMove){
-	if (argComputerMove == 'kamień' && argPlayerMove =='papier'){
-		return 'Gracz wygrywa';	
-	} else if(argComputerMove == 'nożyce' && argPlayerMove =='kamień'){
-		return 'Gracz wygrywa';
-	} else if(argComputerMove == 'papier' && argPlayerMove =='nożyce'){
-		return 'Gracz wygrywa';
-	} else if(argComputerMove == 'kamień' && argPlayerMove =='nożyce'){
-		return 'Komputer wygrywa';
-	} else if(argComputerMove == 'papier' && argPlayerMove =='kamień'){
-		return 'Komputer wygrywa';
-	} else if(argComputerMove == 'nożyce' && argPlayerMove =='papier'){
-		return 'Komputer wygrywa';
-	} else if(argComputerMove == argPlayerMove){
-		return 'remis';
-	} else{
-		return 'gracz wpisał złą liczbę';
-	}
+if (playPaper) {
+    playPaper.addEventListener('click', function () {
+        buttonClicked(3);
+    });
 }
-//Player move//
 
-let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-
-console.log('Gracz wpisał: ' + playerInput);
-let playerMove = getMoveName(playerInput);
-
-printMessage('Ruch gracza to: ' + playerMove);
-
-//computer move//
-
-let randomNumber = Math.floor(Math.random() * 3 + 1);
-console.log('Wylosowana liczba to: ' + randomNumber);
-let computerMove = getMoveName(randomNumber);
-
-printMessage('Ruch komputera to: ' + computerMove);
-
-//Result//
-
-printMessage(displayResult(computerMove, playerMove));
-
+if (playScissors) {
+    playScissors.addEventListener('click', function () {
+        buttonClicked(2);
+    });
+}
