@@ -6,7 +6,7 @@ function playGame(playerInput) {
     }
 
     function printMessage(msg) {
-        let div = document.createElement('div');
+        const div = document.createElement('div');
         div.innerHTML = msg;
         document.getElementById('messages').appendChild(div);
     }
@@ -44,14 +44,12 @@ function playGame(playerInput) {
     }
 
     // Player move
-    console.log('Gracz wpisał: ' + playerInput);
     let playerMove = getMoveName(playerInput);
     printMessage('Ruch gracza to: ' + playerMove);
 
     // Computer move
     let randomNumber = Math.floor(Math.random() * 3 + 1);
-    console.log('Wylosowana liczba to: ' + randomNumber);
-    let computerMove = getMoveName(randomNumber);
+    const computerMove = getMoveName(randomNumber);
     printMessage('Ruch komputera to: ' + computerMove);
 
     // Result
@@ -62,9 +60,9 @@ function buttonClicked(playerChoice) {
     playGame(playerChoice);
 }
 
-let playRock = document.getElementById('play-rock');
-let playPaper = document.getElementById('play-paper');
-let playScissors = document.getElementById('play-scissors');
+const playRock = document.getElementById('play-rock');
+const playPaper = document.getElementById('play-paper');
+const playScissors = document.getElementById('play-scissors');
 
 if (playRock) {
     playRock.addEventListener('click', function () {
